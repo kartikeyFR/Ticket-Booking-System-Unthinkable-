@@ -12,6 +12,9 @@ app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 import seatRouter from "./routes/seat.routes.js";
 app.use("/api/v1/seats", seatRouter);
 
+import bookingRouter from "./routes/booking.routes.js"
+app.use("/api/v1/bookings",bookingRouter);
+
 
 app.get("/health", (req, res) => {
     res.status(200).json({ message: "Server is running smoothly" });
