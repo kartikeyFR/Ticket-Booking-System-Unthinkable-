@@ -15,6 +15,9 @@ app.use("/api/v1/seats", seatRouter);
 import bookingRouter from "./routes/booking.routes.js"
 app.use("/api/v1/bookings",bookingRouter);
 
+import waitlistRouter from "./routes/waitlist.routes.js"
+app.use("/api/v1/waitlist",waitlistRouter);
+
 
 app.get("/health", (req, res) => {
     res.status(200).json({ message: "Server is running smoothly" });
