@@ -5,7 +5,8 @@ import QRCode from "qrcode";
 import crypto from "crypto";
 
 export const confirmBooking = async (req, res) => {
-    const { seatId, userId, eventId } = req.body;
+    const { seatId, eventId } = req.body;
+    const userId=req.user._id;
 
     try {
         // Explicitly cast strings to ObjectIds for strict MongoDB matching

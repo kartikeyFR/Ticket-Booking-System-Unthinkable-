@@ -1,7 +1,9 @@
+import { User } from "../models/user.model.js";
 import { Waitlist } from "../models/waitlist.model.js";
 
 export const joinWaitlist = async (req, res) => {
-    const { eventId, userId, category } = req.body;
+    const { eventId,category } = req.body;
+    const userId=req.user._id
 
     try {
         

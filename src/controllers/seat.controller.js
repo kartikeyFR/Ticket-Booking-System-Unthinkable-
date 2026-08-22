@@ -2,8 +2,9 @@ import { Seat } from "../models/seat.model.js";
 import mongoose from "mongoose";
 
 export const holdSeat = async (req, res) => {
-    const { seatId, userId } = req.body;
+    const { seatId } = req.body;
     const TEN_MINUTES = 10 * 60 * 1000;
+    const userId=user._id
 
     try {
         
