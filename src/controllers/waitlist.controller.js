@@ -1,6 +1,28 @@
 import { User } from "../models/user.model.js";
 import { Waitlist } from "../models/waitlist.model.js";
 
+export const promoteNextInWaitlist = async (eventId, category) => {
+    try {
+        
+      const nextUser = await Waitlist.findOneAndUpdate(
+            { eventId, category, status: "waiting" },
+            { $set: { status: "notified" } },
+            { sort: { createdAt: 1 }, new: true } 
+        );
+
+        if (nextUser) {
+            console.log(`User ${nextUser.userId} promoted to 'notified' for event ${eventId}`);
+            
+            return nextUser;
+        }
+
+        return null; 
+    } catch (error) {
+        console.error("Waitlist promotion error:", error);
+        throw error;
+    }
+};
+
 export const joinWaitlist = async (req, res) => {
     const { eventId,category } = req.body;
     const userId=req.user._id

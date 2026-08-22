@@ -4,11 +4,19 @@ import { Booking } from "../models/booking.model.js";
 import QRCode from "qrcode";
 import crypto from "crypto";
 
+
+
 export const confirmBooking = async (req, res) => {
-    const { seatId, eventId } = req.body;
+    const { seatId, eventId, transactionId } = req.body;
     const userId=req.user._id;
 
     try {
+        if (!transactionId) {
+            return res.status(400).json({
+                success: false,
+                message: "Payment transaction ID is required to confirm booking."
+            });
+        }
         // Explicitly cast strings to ObjectIds for strict MongoDB matching
         const seat = await Seat.findOneAndUpdate(
             {

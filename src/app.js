@@ -13,7 +13,7 @@ import seatRouter from "./routes/seat.routes.js";
 app.use("/api/v1/seats", seatRouter);
 
 import bookingRouter from "./routes/booking.routes.js"
-app.use("/api/v1/bookings",bookingRouter);
+app.use("/api/v1/booking",bookingRouter);
 
 import waitlistRouter from "./routes/waitlist.routes.js"
 app.use("/api/v1/waitlist",waitlistRouter);
@@ -21,6 +21,8 @@ app.use("/api/v1/waitlist",waitlistRouter);
 import authRouter from "./routes/auth.routes.js";
 app.use("/api/v1/auth",authRouter);
 
+import paymentRouter from "./routes/payment.routes.js";
+app.use("/api/v1/payments", paymentRouter);
 
 app.get("/health", (req, res) => {
     res.status(200).json({ message: "Server is running smoothly" });
