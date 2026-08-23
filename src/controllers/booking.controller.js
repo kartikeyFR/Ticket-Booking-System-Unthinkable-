@@ -4,6 +4,25 @@ import { Booking } from "../models/booking.model.js";
 import QRCode from "qrcode";
 import crypto from "crypto";
 
+export const getUserTickets = async (req, res) => {
+    const userId = req.user._id;
+
+    try {
+        
+        const bookings = await Booking.find({ userId: new mongoose.Types.ObjectId(userId) })
+            .populate("seatId")
+            .sort({ createdAt: -1 }); 
+
+        return res.status(200).json({
+            success: true,
+            count: bookings.length,
+            bookings
+        });
+    } catch (error) {
+        return res.status(500).json({ success: false, message: error.message });
+    }
+};
+
 
 
 export const confirmBooking = async (req, res) => {
